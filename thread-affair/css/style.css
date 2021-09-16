@@ -533,7 +533,12 @@ a {
   font-weight: 500;
 }
 
-.product-tile .product-a2c {
+.product-tile .product-tile-controls {
+  display: flex;
+  justify-content: space-around;
+}
+
+.product-tile .product-control {
   background-color: transparent;
   border: 1px solid #ff6b6b;
   padding: 10px 25px;
@@ -543,11 +548,30 @@ a {
   color: #ff6b6b;
   transition: color linear 0.2s, background-color linear 0.2s;
   cursor: pointer;
+  position: relative;
 }
 
-.product-tile .product-a2c:hover {
+.product-tile .product-control:hover,
+.product-tile .product-control.active {
   color: #fff;
   background-color: #ff6b6b;
+}
+
+.product-tile .product-control.busy span {
+  opacity: 0;
+}
+
+.product-tile .product-control .icon {
+  display: none;
+}
+
+.product-tile .product-control.busy .icon {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
 }
 
 .home-catalog-preview footer {
@@ -683,6 +707,24 @@ a {
 .home-newsletter .message {
   text-align: center;
   font-size: 12px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.home-newsletter button[type='submit'].busy {
+  background: none;
+}
+
+.home-newsletter button[type='submit'].busy .icon {
+  animation: spin 1s linear infinite;
 }
 
 .footer-top {
