@@ -311,16 +311,20 @@ a {
   margin-right: 10px;
 }
 
-.header-cart {
+.header-counters {
+  display: flex;
+}
+
+.header-counter {
   position: relative;
   margin-top: 6px;
 }
 
-.header-cart .icon {
+.header-counter .icon {
   font-size: 30px;
 }
 
-.header-cart .cart-qty {
+.header-counter .qty {
   position: absolute;
   top: -6px;
   right: -5px;
@@ -535,7 +539,7 @@ a {
 
 .product-tile .product-tile-controls {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .product-tile .product-control {
