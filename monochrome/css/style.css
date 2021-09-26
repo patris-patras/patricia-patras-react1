@@ -534,6 +534,19 @@ imaginea. Imi strica alinierea si nu am reusit sa o remediez, asa ca am apelat
   display: flex;
 }
 
+.product-control {
+  display: inline-block;
+  border: 0;
+  font-size: 26px;
+  cursor: pointer;
+  position: relative;
+}
+
+.product-control:hover,
+.product-control:active {
+  color: #740878;
+}
+
 .product-tile-controls a {
   color: #2b2b2b;
   font-size: 25px;

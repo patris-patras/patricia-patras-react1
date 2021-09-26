@@ -1,3 +1,8 @@
+const ADD_TO_CART_EVENT = 'cart:add';
+const REMOVE_FROM_CART_EVENT = 'cart:remove';
+const ADD_TO_WISHLIST_EVENT = 'wl:add';
+const REMOVE_FROM_WISHLIST_EVENT = 'wl:remove';
+
 class NewsletterForm extends React.Component {
   // v1 fara constructor - o sa ruleze constructorul lui React.Component deci
   state = {
