@@ -223,3 +223,23 @@ productTileControls.forEach((productTileControl, index) => {
     productTileControl,
   );
 });
+
+class HeaderCounters extends ReactComponent {
+  render() {
+    return (
+      <React.Fragment>
+        <div class="header-counter">
+          <span class="qty">3</span>
+
+          <i class="fas fa-heart"></i>
+        </div>
+
+        <div class="header-counter">
+          <span class="qty">3</span>
+
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+      </React.Fragment>
+    );
+  }
+}

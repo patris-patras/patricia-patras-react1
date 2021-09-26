@@ -639,12 +639,41 @@ aside img {
   margin: 10px 5px;
   padding: 5px 0;
   font-family: 'Roboto';
-  font-weight: normal;
+  font-weight: 500;
+  color: #2b2b2b;
 }
 
 .footer-sign-up-newsletter button {
   max-width: 100px;
   margin-left: 0;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.footer-sign-up-newsletter button[type='submit'].busy .icon {
+  animation: spin 1s linear infinite;
+}
+
+.footer-sign-up-newsletter button[type='submit'].busy {
+  background-color: none;
+  border: none;
+}
+
+.footer-sign-up-newsletter .message {
+  font-size: 14px;
+  font-variant: small-caps;
+}
+
+.footer-sign-up-newsletter .thank-you-message {
+  padding-bottom: 10px;
 }
 
 .footer-nav-style nav li {
