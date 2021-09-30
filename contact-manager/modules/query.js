@@ -47,4 +47,26 @@ export const deleteContact = (contactId) => {
   }
 };
 
-export const editContact = (contactId, data) => {};
+export const editContact = (contactId, payload) => {
+  let contactIndex = -1;
+  contactId = Number(contactId);
+
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    const id = contact.id;
+
+    if (id === contactId) {
+      contactIndex = i;
+    }
+
+    if (contactIndex >= 0) {
+      payload.id = Number(payload.id);
+
+      contacts[contactIndex] = payload;
+    }
+  }
+};
+
+export const addContact = (contact) => {
+  contacts.push(contact);
+};
