@@ -370,12 +370,7 @@ class HeaderCounters extends React.Component {
               }}
             >
               {wishlistItemsCount}
-              <i
-                className="far fa-heart"
-                onClick={() => {
-                  this.showProducts('wishlistItemsCount', 'Wishlist');
-                }}
-              ></i>
+              <i className="far fa-heart"></i>
             </a>
           </li>
 
