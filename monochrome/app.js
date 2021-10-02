@@ -257,7 +257,7 @@ class HeaderCounters extends React.Component {
     let message = '';
     const bucket = displayName.toLowerCase();
 
-    if (this.state[collectionName] > 1) {
+    if (this.state[collectionName] < 1) {
       message = `You have no products in your ${bucket}.`;
     } else {
       message = `The products in your ${bucket}: ${
@@ -296,7 +296,7 @@ class HeaderCounters extends React.Component {
   };
 
   productWishlistAction = (event) => {
-    alert('On event');
+    // alert('On event');
     const { productId } = event.detail;
     const eventType = event.type;
     const { wishlistItems } = this.state;
@@ -360,7 +360,15 @@ class HeaderCounters extends React.Component {
           </li>
 
           <li>
-            <a href="http://" title="Saved Items">
+            <a
+              href="http://"
+              title="Saved Items"
+              onClick={(event) => {
+                event.preventDefault();
+
+                this.showProducts('wishlistItemsCount', 'Wishlist');
+              }}
+            >
               {wishlistItemsCount}
               <i
                 className="far fa-heart"
@@ -372,14 +380,16 @@ class HeaderCounters extends React.Component {
           </li>
 
           <li>
-            <a href="http://" title="Cart">
+            <a
+              href="http://"
+              title="Cart"
+              onClick={(event) => {
+                event.preventDefault();
+                this.showProducts('cartItemsCount', 'Cart');
+              }}
+            >
               {cartItemsCount}
-              <i
-                className="fas fa-shopping-bag"
-                onClick={() => {
-                  this.showProducts('cartItemsCount', 'Cart');
-                }}
-              ></i>
+              <i className="fas fa-shopping-bag"></i>
             </a>
           </li>
         </ul>
