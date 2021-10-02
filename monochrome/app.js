@@ -127,7 +127,7 @@ class AddToCartButton extends React.Component {
         busy: false,
         added: !this.state.added,
       });
-    }, 1500);
+    }, 500);
   };
 
   render() {
@@ -141,15 +141,12 @@ class AddToCartButton extends React.Component {
         onClick={this.onClick}
       >
         <span>
-          <i
-            className={
-              this.state.added === true
-                ? 'far fa-minus-square'
-                : 'far fa-plus-square'
-            }
-          ></i>
+          {this.state.added === true ? (
+            <i className="far fa-minus-square" />
+          ) : (
+            <i className="far fa-plus-square" />
+          )}
         </span>
-        <i className="far fa-plus-square"></i>
       </button>
     );
   }
@@ -175,7 +172,7 @@ class AddToWishlistButton extends React.Component {
         busy: false,
         added: !this.state.added,
       });
-    }, 1000);
+    }, 500);
   };
 
   render() {
@@ -192,17 +189,12 @@ class AddToWishlistButton extends React.Component {
         className={className}
         type="button"
         onClick={this.onClick}
-        title={added === true ? 'Remove from Wishlist' : 'Add to Wishlist'}
+        title={added === true ? 'remove from Wishlist' : 'add to Wishlist'}
         disabled={busy}
       >
         <span>
-          <i
-            className={
-              added === true ? 'fas fa-heart icon' : 'far fa-heart icon'
-            }
-          ></i>
+          <i className={added === true ? 'fas fa-heart' : 'far fa-heart'} />
         </span>
-        <i class="far fa-heart icon"></i>
       </button>
     );
   }
@@ -222,7 +214,7 @@ class ProductControls extends React.Component {
   }
 }
 
-const productTileControls = document.querySelectorAll('.product-tile-control');
+const productTileControls = document.querySelectorAll('.product-tile-controls');
 productTileControls.forEach((productTileControl, index) => {
   ReactDOM.render(
     <ProductControls key={index} productId={index}></ProductControls>,
