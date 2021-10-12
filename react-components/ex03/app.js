@@ -61,3 +61,35 @@ Object.values(person.friends).forEach(({ name, age }) => {
     )} ani.`,
   );
 });
+
+console.warn(`Prin aceeasi metoda, afiseaza o lista cu numele complet al prietenilor
+`);
+Object.values(person.friends).forEach(({ name, surname }) => {
+  console.log(`${name} ${surname} `);
+});
+
+console.warn(`5.Afiseaza propozitia:
+“Prietenii mei sunt Larry Larryson, Steven Stevenson si Carol Carolson.” folosind Object.values()
+`);
+message = Object.values(person.friends).reduce(
+  (message, { name, surname }, index, friends) => {
+    const punctuation =
+      index === friends.length - 1
+        ? '.'
+        : index === friends.length - 2
+        ? ' si '
+        : ', ';
+
+    return `${message}${name} ${surname}${punctuation}`;
+  },
+  'Prietenii mei sunt ',
+);
+
+console.log(message);
+
+console.warn(`6.In mod similar, afiseaza propozitia  “Larry are xx ani. Steven are …”
+`);
+message = Object.values(person.friends).reduce((message, { name, age }) => {
+  return `${message}${name} are ${age} de ani. `;
+}, '');
+console.log(message);

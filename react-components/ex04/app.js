@@ -1,6 +1,6 @@
 const person = {
-  name: 'Dragos',
-  surname: 'Iordache',
+  name: 'Patricia',
+  surname: 'Patras',
   age: 32,
   petOwner: true,
   skills: {
@@ -67,3 +67,54 @@ let message = Object.entries(person.friends).reduce(
   'Prietenii mei sunt ',
 );
 console.log(message);
+
+console.warn(`In mod similar afiseaza mai multe propozitii
+(cate una per console.log()) care sa afiseze:
+“Diferenta de varsta intre Larry si Dragos este de xxx ani.” etc…
+`);
+message = Object.entries(person.friends).forEach(([, friend]) => {
+  const { name, age } = friend;
+  console.log(
+    `Diferenta de varsta intre ${person.name} si ${name} este de ${
+      person.age - age
+    }`,
+  );
+});
+
+console.warn(`5.Folosind Object.entries() pe proprietatea skills, afiseaza toate abilitatile din obiectul skills
+`);
+
+message = Object.entries(person.skills).forEach(([skill]) => {
+  console.log(skill);
+});
+
+console.warn(`6.Prin aceeasi metoda, afiseaza o lista cu numele complet al prietenilor
+`);
+message = Object.entries(person.friends).forEach(([, { name, surname }]) => {
+  console.log(`${name} ${surname}`);
+});
+
+console.warn(`7.Afiseaza propozitia: “Prietenii mei sunt Larry Larryson, Steven Stevenson si Carol Carolson.”
+`);
+message = Object.entries(person.friends).reduce(
+  (message, [, friend], index, friends) => {
+    const { name, surname } = friend;
+    const length = friends.length;
+    const punctuation =
+      index === length - 1 ? '.' : index === length - 2 ? ' si ' : ', ';
+
+    return `${message}${name} ${surname}${punctuation}`;
+  },
+  'Prietenii mei sunt ',
+);
+console.log(message);
+
+console.warn(`8.In mod similar, afiseaza mai multe propozitii (cate una per console.log())
+ care sa afiseze: “Larry are xx ani. Steven are …”
+
+`);
+Object.entries(person.friends).forEach(([, friend]) => {
+  const { name, age } = friend;
+
+  console.log(`${name} are ${age} ani. `);
+});
