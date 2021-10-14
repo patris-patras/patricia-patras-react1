@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { MetaImage } from './MetaImage';
+import MetaImage from './MetaImage';
 
 class Film extends Component {
   render() {
@@ -22,8 +22,9 @@ class Film extends Component {
           </button>
         </div>
 
-        <div className="col-12 col-md-4 text-center">insert image here</div>
-        <MetaImage term={this.props.title}></MetaImage>
+        <div className="col-12 col-md-4 text-center">
+          <MetaImage term={this.props.title}></MetaImage>
+        </div>
 
         <div className="col-12 col-md-8 mt-4 mt-md-0">
           <h3 className="mb-4">Details</h3>
