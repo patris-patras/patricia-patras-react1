@@ -34,7 +34,7 @@ export const MetaImage = ({ term }) => {
           setImageUrl(imageUrl);
         });
     }, random);
-  }, []);
+  }, [term]);
 
   return (
     <>
