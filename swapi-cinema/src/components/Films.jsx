@@ -3,7 +3,7 @@ import { Component } from 'react';
 class Films extends Component {
   renderFilms() {
     if (this.props.films.length <= 0) {
-      return <>No films found</>;
+      return <p>No films found</p>;
     }
 
     return this.props.films.map((film) => {
@@ -23,6 +23,9 @@ class Films extends Component {
               className="btn btn-sm btn-light"
               type="button"
               title={`View details about ${title}`}
+              onClick={() => {
+                this.props.selectFilm(film);
+              }}
             >
               Details
             </button>
@@ -31,6 +34,9 @@ class Films extends Component {
               className="btn btn-sm btn-warning"
               type="button"
               title={`Buy tickets to ${title}`}
+              onClick={() => {
+                this.props.purchaseFilm(film);
+              }}
             >
               Buy Tickets
             </button>
