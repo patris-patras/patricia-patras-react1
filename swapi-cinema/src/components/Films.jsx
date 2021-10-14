@@ -1,5 +1,5 @@
 import { Component } from 'react';
-// import { MetaImage } from './MetaImage';
+import { MetaImage } from './MetaImage';
 
 class Films extends Component {
   renderFilms() {
@@ -19,7 +19,9 @@ class Films extends Component {
             <h6 className="text-warning text-left">{title}</h6>
           </header>
 
-          <section>{/* <MetaImage term={title}></MetaImage> */}</section>
+          <section>
+            <MetaImage term={title}></MetaImage>
+          </section>
 
           <section className="d-flex justify-content-between">
             <button

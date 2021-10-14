@@ -11,7 +11,7 @@ export const MetaImage = ({ term }) => {
 
   useEffect(() => {
     const refinedSearchTerm = encodeURIComponent(`star wars ${term}`); // pregateste char speciale pe care le pune in URL
-    const random = Math.floor(Math.random() * 10000) + 2;
+    const random = Math.floor(Math.random() * 2000) + 1;
 
     setTimeout(() => {
       fetch(
