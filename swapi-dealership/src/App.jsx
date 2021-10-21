@@ -1,7 +1,7 @@
-import { useReducer, useState } from 'react';
+import { useReducer } from 'react';
+import FooterNav from './components/FooterNav';
 import Screen from './components/Screen';
 import { AppContext, appState, appStateReducer } from './contexts/AppContext';
-import MetaImage from './legacy/Metaimage';
 import Search from './legacy/Search';
 
 const App = () => {
@@ -15,26 +15,21 @@ const App = () => {
 
   return (
     <AppContext.Provider value={contextValue}>
-      <header className="nav-bar-dark fixed-top bg-dark border-bottom border-warning">
+      <header className="navbar-dark fixed-top bg-dark border-bottom border-warning">
         <nav className="container d-flex justify-content-between">
-          <h1 className="display-6 text-warning">Swapi DealerSHIP</h1>
+          <h1 className="display-6 text-warning">Swapi Vehicles</h1>
 
           <Search></Search>
         </nav>
       </header>
 
       <main className="container mt-7 mb-4">
-        <button
-          onClick={() => {
-            dispatch({ type: 'setScreen', payload: 'productPage' });
-          }}
-        >
-          to products page
-        </button>
         <Screen screen={currentScreen}></Screen>
       </main>
 
-      <footer className="container mb-4">footer</footer>
+      <footer className="container mb-4">
+        <FooterNav></FooterNav>
+      </footer>
     </AppContext.Provider> // => un obj 'AppContext' cu o proprietate 'Provider'
   );
 };
