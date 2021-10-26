@@ -1,5 +1,6 @@
 import { useContext, useMemo } from 'react';
 import { AppContext } from '../contexts/AppContext';
+import Dialog from './Dialog';
 // import MetaImage from './../legacy/MetaImage';
 import { ProductDetails } from './ProductDetails';
 
@@ -91,6 +92,8 @@ export const Product = () => {
             : `Add to cart (${product.cost_in_credits})`}
         </button>
       </div>
+
+      <Dialog show={true}>Hello from portal</Dialog>
     </section>
   );
 };
