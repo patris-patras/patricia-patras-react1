@@ -12,9 +12,11 @@ export const Product = () => {
   //   ? true
   //   : false;
   const productInCart = useMemo(() => {
-    return cart.find((cartItem) => {
-      return cartItem.name === product.name;
-    });
+    return Boolean(
+      cart.find((cartItem) => {
+        return cartItem.name === product.name;
+      }),
+    );
   }, [cart, product.name]);
 
   const navigateHome = () => {
@@ -32,6 +34,13 @@ export const Product = () => {
   const addToCart = () => {
     dispatch({
       type: 'addToCart',
+      payload: product,
+    });
+  };
+
+  const removeFromCart = () => {
+    dispatch({
+      type: 'removeFromCart',
       payload: product,
     });
   };
@@ -73,7 +82,9 @@ export const Product = () => {
           className="btn btn-warning btn-xl flex-grow-1"
           title={`Add ${product.name} to cart`}
           type="button"
-          onClick={addToCart}
+          onClick={() => {
+            productInCart ? removeFromCart() : addToCart();
+          }}
         >
           {productInCart
             ? 'Remove from cart'

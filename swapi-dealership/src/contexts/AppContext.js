@@ -7,6 +7,10 @@ export const appState = {
   selected: null,
   searchResults: [],
   cart: [],
+  order: {
+    address: {},
+    items: [],
+  },
 };
 
 export const appStateReducer = (appState, { type, payload }) => {
@@ -39,6 +43,31 @@ export const appStateReducer = (appState, { type, payload }) => {
     };
   }
 
+  if (type === 'removeFromCart') {
+    const cart = appState.cart.filter((cartItem) => {
+      return cartItem.name !== payload.name;
+    });
+
+    return {
+      ...appState,
+      cart: cart, // KIND REMINDER AGAIN: shortcut cand key e egal cu val ei
+    };
+  }
+
+  if (type === 'emptyCart') {
+    return {
+      ...appState,
+      cart: [], // pur si simplu suprascriu cartul cu un array gol
+    };
+  }
+
+  if (type === 'setOrder') {
+    return {
+      ...appState,
+      order: payload,
+    };
+  }
+
   return appState;
 }; // appState = stearea applicatiei, ca acumulatorul;
-//type = tip event, payload= informatia; imi reduce tot la o varianta singura a obiectului appState
+//type = tip event, payload= informatia; imi reduce tot la o singura varianta a obiectului appState
