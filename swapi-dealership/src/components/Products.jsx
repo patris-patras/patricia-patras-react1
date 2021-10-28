@@ -59,8 +59,13 @@ export const Products = () => {
     }, options);
 
     // listening/observing to intersection events
-    observer.observe(loadMoreRef.current);
+    const targetElement = loadMoreRef.current;
+    observer.observe(targetElement);
     // provide cleanup function
+
+    return () => {
+      observer.unobserve(targetElement);
+    };
   }, []);
 
   return (
