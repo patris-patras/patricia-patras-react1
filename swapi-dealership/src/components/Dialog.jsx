@@ -23,7 +23,7 @@ export const Dialog = ({ show = false, onClose = () => {}, children }) => {
 
     return (
       <div className="fixed-top position-absolute d-flex justify-content-center align-items-center vh-100 vw-100">
-        <div className="bg-white bg-opacity-50 shadow w-75">
+        <div className="bg-white bg-opacity-100 shadow w-75">
           <header className="py-2 px-3 text-end">
             <button
               className="btn-link bg-transparent p-0 border-0"
