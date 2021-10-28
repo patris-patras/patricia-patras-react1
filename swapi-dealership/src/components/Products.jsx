@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ProductTile from './ProductTile';
 
 const baseUrl = 'https://swapi.dev/api/vehicles';
@@ -6,22 +6,28 @@ const baseUrl = 'https://swapi.dev/api/vehicles';
 export const Products = () => {
   const [products, setProducts] = useState([]);
   const [busy, setBusy] = useState(true);
+  const [urlToFetch, setUrlToFetch] = useState(baseUrl);
+  const nextUrl = useRef('');
 
   // recipe
   const fetchProducts = useCallback(() => {
     setBusy(true);
 
-    return fetch(baseUrl)
+    return fetch(urlToFetch)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        const products = data.results;
+        const newProducts = data.results;
 
-        setProducts(products);
+        // nextUrl.current = data.next !== null ? data.next : '' sau
+        // nullish coalescing operator:
+        nextUrl.current = data?.next ?? '';
+
+        setProducts([...products, ...newProducts]);
         setBusy(false);
       });
-  }, []);
+  }, [urlToFetch]);
 
   useEffect(() => {
     fetchProducts();
@@ -40,7 +46,24 @@ export const Products = () => {
         return <ProductTile product={product} key={name}></ProductTile>;
       })}
 
-      {busy ? '...loading' : <></>}
+      {/* {busy ? '...loading' : <></>} */}
+      <div className="col-12 text-center">
+        {nextUrl.current.length > 0 ? (
+          <button
+            className="btn btn-xl btn-warning"
+            title="Load more"
+            type="button"
+            disabled={busy}
+            onClick={() => {
+              setUrlToFetch(nextUrl.current);
+            }}
+          >
+            {busy ? '...loading' : 'Load More'}
+          </button>
+        ) : (
+          <></>
+        )}
+      </div>
     </section>
   );
 };
