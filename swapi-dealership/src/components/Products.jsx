@@ -24,7 +24,10 @@ export const Products = () => {
         // nullish coalescing operator:
         nextUrl.current = data?.next ?? '';
 
-        setProducts([...products, ...newProducts]);
+        // closure functions vvv
+        setProducts((products) => {
+          return [...products, ...newProducts];
+        });
         setBusy(false);
       });
   }, [urlToFetch]);
