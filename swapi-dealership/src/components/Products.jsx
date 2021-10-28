@@ -8,6 +8,7 @@ export const Products = () => {
   const [busy, setBusy] = useState(true);
   const [urlToFetch, setUrlToFetch] = useState(baseUrl);
   const nextUrl = useRef('');
+  const loadMoreRef = useRef(null);
 
   // recipe
   const fetchProducts = useCallback(() => {
@@ -37,6 +38,31 @@ export const Products = () => {
   }, [fetchProducts]);
   // end recipe
 
+  useEffect(() => {
+    // defining options
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshhold: 1.0,
+    };
+
+    // instantiating the observer
+    const observer = new IntersectionObserver((entries) => {
+      const intersectionObserverEntry = entries[0];
+
+      if (
+        intersectionObserverEntry.isIntersecting &&
+        nextUrl.current.length > 0
+      ) {
+        setUrlToFetch(nextUrl.current);
+      }
+    }, options);
+
+    // listening/observing to intersection events
+    observer.observe(loadMoreRef.current);
+    // provide cleanup function
+  }, []);
+
   return (
     <section className="row">
       <div className="col-12 mb-6">
@@ -50,13 +76,14 @@ export const Products = () => {
       })}
 
       {/* {busy ? '...loading' : <></>} */}
-      <div className="col-12 text-center">
+      <div className="col-12 text-center" ref={loadMoreRef}>
         {nextUrl.current.length > 0 ? (
           <button
             className="btn btn-xl btn-warning"
             title="Load more"
             type="button"
             disabled={busy}
+            ref={loadMoreRef}
             onClick={() => {
               setUrlToFetch(nextUrl.current);
             }}
