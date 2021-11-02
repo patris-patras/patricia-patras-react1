@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { clickClicker } from './actions/creators/ui';
+import { clickClicker, decrementClicker } from './actions/creators/ui';
 import { Footer, Header } from './components/common';
 
 export const App = () => {
@@ -17,10 +17,17 @@ export const App = () => {
         <div>Value is {clicker}</div>
         <button
           onClick={() => {
+            dispatch(decrementClicker());
+          }}
+        >
+          Decrement
+        </button>
+        <button
+          onClick={() => {
             dispatch(clickClicker());
           }}
         >
-          test btn
+          Increment
         </button>
       </main>
       <Footer></Footer>

@@ -1,4 +1,4 @@
-import { CLICKER_CLICK } from '../../types/ui';
+import { CLICKER_CLICK, CLICKER_DECREMENT } from '../../types/ui';
 
 export const clickClicker = (payload = 1) => {
   return {
@@ -6,3 +6,10 @@ export const clickClicker = (payload = 1) => {
     payload, // KIND reminder: payload: payload
   };
 };
+
+export const decrementClicker = (payload = 1) => {
+  return {
+    type: CLICKER_DECREMENT,
+    payload,
+  };
+}; // KIND reminder: tb sa fie functie pura!
