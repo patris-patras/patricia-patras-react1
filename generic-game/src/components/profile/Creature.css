@@ -1,0 +1,112 @@
+@keyframes action-bounce {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(0, 35px);
+  }
+
+  30% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.eye {
+  background-color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.eye__iris {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: crimson;
+}
+
+.eye__lid {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: -35px;
+  left: 0;
+  background-color: #ffabce;
+  will-change: transform;
+  transform: translateZ(0);
+  /* jankfree.org */
+}
+
+.eye--blinking .eye__lid {
+  animation: action-bounce 3s linear infinite forwards;
+}
+
+.nose {
+  width: 60px;
+  height: 50px;
+  border-radius: 20px;
+  border: 1px solid black;
+  position: relative;
+  background-color: #ffabce;
+}
+
+.nose__nostril {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #000;
+  top: 20px;
+}
+
+.nose__nostril--left {
+  right: 15px;
+}
+
+.nose__nostril--right {
+  left: 15px;
+}
+
+.creature {
+  width: 220px;
+  height: 160px;
+  border-radius: 30px;
+  border: 3px solid black;
+  position: relative;
+  background-color: #ffabce;
+}
+
+.creature__eyes {
+  position: relative;
+  margin-top: 50px;
+}
+
+.creature__eye {
+  position: absolute;
+}
+
+.creature__eye--left {
+  left: 60px;
+}
+
+.creature__eye--right {
+  right: 60px;
+}
+
+.creature__nose-line {
+  margin-top: 80px;
+}
+
+.creature__nose {
+  margin: 0 auto;
+}
