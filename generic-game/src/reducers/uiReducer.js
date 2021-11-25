@@ -5,8 +5,6 @@ const initialState = {
 };
 
 export const uiReducer = (state = initialState, { type, payload }) => {
-  // {type, payload} = action ^^^
-
   switch (type) {
     case CLICKER_CLICK:
       const newState = {};
@@ -18,11 +16,9 @@ export const uiReducer = (state = initialState, { type, payload }) => {
         ...state,
         clicker: state.clicker - payload,
       };
-
     default:
       return state;
   }
-  // pentru ca e reducer, tre sa scoata mereu starea
 };
 
 export default uiReducer;
