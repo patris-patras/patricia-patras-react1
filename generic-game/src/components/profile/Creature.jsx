@@ -1,5 +1,5 @@
-import { useSelector } from 'react-redux';
 import { useProfileColors } from '../../hooks';
+
 import './Creature.css';
 
 export const Creature = () => {
