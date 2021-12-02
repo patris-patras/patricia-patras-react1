@@ -67,4 +67,40 @@ export const updateProfile = async (userId, colors) => {
   return await usersApi.patch(`/profiles/${userId}`, payload);
 };
 
+export const updateGameLost = async (userId, userStats) => {
+  const payload = {
+    stats: {
+      ...userStats,
+      gamesLost: ++userStats.gamesLost,
+      gamesPlayed: ++userStats.gamesPlayed,
+    },
+  };
+
+  const { data } = await usersApi.patch(`/users/${userId}`, payload);
+
+  if (data.stats) {
+    return data.stats;
+  }
+
+  return undefined;
+};
+
+export const updateGameWon = async (userId, userStats) => {
+  const payload = {
+    stats: {
+      ...userStats,
+      gamesLost: --userStats.gamesLost,
+      gamesWon: ++userStats.gamesWon,
+    },
+  };
+
+  const { data } = await usersApi.patch(`/users/${userId}`, payload);
+
+  if (data.stats) {
+    return data.stats;
+  }
+
+  return undefined;
+};
+
 export default usersApi;

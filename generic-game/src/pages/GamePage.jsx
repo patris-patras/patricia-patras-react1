@@ -1,55 +1,69 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { patchGameLost, patchGameWon } from '../actions/creators/profile';
 import { Authorize } from '../components/auth';
 import { Creature } from '../components/profile';
 import { Button } from '../components/ui';
+import { gameEnded, gameStarted } from './../actions/creators/game';
 
 export const GamePage = () => {
-  const [gameState, setGameState] = useState({
-    playing: false,
+  const dispatch = useDispatch();
+  const { playing } = useSelector(({ game }) => {
+    return game;
   });
-  const { playing } = gameState;
 
   return (
-    <div className="p-4 container mx-auto">
+    <div className="p-4 container flex mx-auto">
       <Authorize>
         {/* ^^^ pe Authorize as introduce roles daca as avea roles={['admin', 'editor']} */}
-        <div className="w-full md:w8/12 mb-2 px-5 flex items-center justify-around">
+        <div className="w-full mb-2 md:w-8/12 flex items-center justify-around">
           {playing ? (
             <>
-              <Button title="Win game" type="button" onClick={() => {}}>
-                Games won
+              <Button
+                title="Win game"
+                type="button"
+                onClick={() => {
+                  dispatch(patchGameWon());
+                  dispatch(gameEnded());
+                }}
+              >
+                Win game
               </Button>
               <Button
                 title="Lose game"
                 type="button"
                 skin="dangerInverted"
-                onClick={() => {}}
+                onClick={() => {
+                  dispatch(gameEnded());
+                }}
               >
-                Games lost
+                Lose game
               </Button>
               <Button
                 title="Quit"
                 type="button"
                 skin="danger"
-                onClick={() => {}}
+                onClick={() => {
+                  dispatch(gameEnded());
+                }}
               >
                 Quit
               </Button>
             </>
           ) : (
             <Button
-              title="Start game"
+              title="Start Game"
               type="button"
               onClick={() => {
-                setGameState({ playing: true });
+                dispatch(patchGameLost());
+                dispatch(gameStarted());
               }}
             >
-              Start game
+              Start Game
             </Button>
           )}
         </div>
 
-        <div className="w-full md:w4/12 flex flex-col items-center justify-center">
+        <div className="w-full md:w-4/12 flex flex-col items-center justify-center">
           <Creature></Creature>
         </div>
       </Authorize>
